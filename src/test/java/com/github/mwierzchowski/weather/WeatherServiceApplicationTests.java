@@ -17,4 +17,9 @@ class WeatherServiceApplicationTests {
 		assertNotNull(controller);
 	}
 
+	@Test
+	void controllerGivesWeather() {
+		assertNotNull(controller.getCurrentWeather());
+	}
+
 }
