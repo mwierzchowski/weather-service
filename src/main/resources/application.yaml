@@ -1,1 +1,17 @@
+# Application info
+info.app.name: Weather Service
 
+# Actuator
+management:
+  endpoints.web.exposure.include: '*'
+  endpoint.health.show-details: always
+
+# Logging levels
+logging.level:
+  root: WARN
+  com.github.mwierzchowski.weather: INFO
+
+# Default location (Warsaw)
+weather.location:
+  latitude: 52.23
+  longitude: 21.01
