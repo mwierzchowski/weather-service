@@ -1,0 +1,3 @@
+# Logging levels
+logging.level:
+  com.github.mwierzchowski.weather: DEBUG

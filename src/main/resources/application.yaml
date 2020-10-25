@@ -11,6 +11,11 @@ logging.level:
   root: WARN
   com.github.mwierzchowski.weather: INFO
 
+# Disable Groovy templates
+spring.groovy.template:
+  check-template-location: false
+  enabled: false
+
 # Default location (Warsaw)
 weather.location:
   latitude: 52.23

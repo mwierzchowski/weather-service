@@ -1,13 +1,12 @@
-package com.github.mwierzchowski.weather.core;
+package com.github.mwierzchowski.weather.web;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class Dummy {
+public class DummyRequest {
     @NotNull
     private String name;
 
