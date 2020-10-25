@@ -14,10 +14,10 @@ jobs:
       - name: Checkout tags
         run: git fetch --prune --unshallow
 
-      - name: Set up JDK 14
+      - name: Set up JDK 13
         uses: actions/setup-java@v1
         with:
-          java-version: 1.14
+          java-version: 1.13
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v1
@@ -41,10 +41,10 @@ jobs:
       - name: Checkout tags
         run: git fetch --prune --unshallow
 
-      - name: Set up JDK 14
+      - name: Set up JDK 13
         uses: actions/setup-java@v1
         with:
-          java-version: 1.14
+          java-version: 1.13
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v1

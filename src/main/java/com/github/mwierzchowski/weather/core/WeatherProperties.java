@@ -1,4 +1,4 @@
-package com.github.mwierzchowski.weather;
+package com.github.mwierzchowski.weather.core;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
