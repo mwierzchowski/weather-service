@@ -5,7 +5,7 @@ env:
   PKG_NAME: docker.pkg.github.com/mwierzchowski/weather-service
 
 jobs:
-  Build:
+  VerTest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,46 +29,73 @@ jobs:
       - name: Set up version
         run: echo "::set-env name=VERSION::$($VERSION_EXP)"
 
-      - name: Assemble application
-        run: ./gradlew assemble
+      - name: Show version
+        run: ./gradlew properties -q | grep "version:" | awk '{print $2}'
 
-  Test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Checkout tags
-        run: git fetch --prune --unshallow
-
-      - name: Set up JDK 14
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.14
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Test application
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
-        run: ./gradlew test jacocoTestReport sonarqube --info
-
-      - name: Publish test summary
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: Test Summary
-          path: ~/work/weather-service/weather-service/build/reports/tests/test
+#  Build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Checkout tags
+#        run: git fetch --prune --unshallow
+#
+#      - name: Set up JDK 14
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.14
+#
+#      - name: Cache Gradle dependencies
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.gradle/caches
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle
+#
+#      - name: Set up version
+#        run: echo "::set-env name=VERSION::$($VERSION_EXP)"
+#
+#      - name: Assemble application
+#        run: ./gradlew assemble
+#
+#  Test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Checkout tags
+#        run: git fetch --prune --unshallow
+#
+#      - name: Set up JDK 14
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.14
+#
+#      - name: Cache Gradle dependencies
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.gradle/caches
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle
+#
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#
+#      - name: Test application
+#        env:
+#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+#        run: ./gradlew test jacocoTestReport sonarqube --info
+#
+#      - name: Publish test summary
+#        if: always()
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: Test Summary
+#          path: ~/work/weather-service/weather-service/build/reports/tests/test
