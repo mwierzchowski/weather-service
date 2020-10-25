@@ -65,11 +65,3 @@ sonarqube {
 		property "sonar.host.url", "https://sonarcloud.io"
 	}
 }
-
-// todo is it needed?
-jacocoTestReport {
-	reports {
-		xml.enabled true
-		html.enabled false
-	}
-}
