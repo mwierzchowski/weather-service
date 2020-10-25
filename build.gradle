@@ -61,13 +61,13 @@ test {
 	useJUnitPlatform()
 }
 
-//sonarqube {
-//	properties {
+sonarqube {
+	properties {
 //		property "sonar.projectKey", "mwierzchowski_weather-service"
 //		property "sonar.organization", "mwierzchowski"
-//		property "sonar.host.url", "https://sonarcloud.io"
-//	}
-//}
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
+}
 
 jacocoTestReport {
 	reports {
