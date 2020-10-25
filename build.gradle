@@ -9,7 +9,7 @@ plugins {
 
 group = 'com.github.mwierzchowski.weather'
 version = System.getenv('VERSION') ?: 'SNAPSHOT'
-sourceCompatibility = '13'
+sourceCompatibility = '14'
 
 configurations {
 	compileOnly {
