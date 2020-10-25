@@ -30,7 +30,7 @@ jobs:
         run: echo "::set-env name=VERSION::$($VERSION_EXP)"
 
       - name: Assemble application
-        run: ./gradlew assemble -PbuildInfoEnabled
+        run: ./gradlew assemble
 
   Test:
     runs-on: ubuntu-latest
