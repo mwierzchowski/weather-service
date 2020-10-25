@@ -29,11 +29,8 @@ jobs:
       - name: Set up version
         run: echo "VERSION=$($VERSION_EXP)" >> $GITHUB_ENV
 
-      - name: Check version
-        run: ./gradlew properties -q | grep "version:" | awk '{print $2}'
-
       - name: Assemble application
-        run: ./gradlew assemble -DVERSION=$VERSION
+        run: ./gradlew assemble
 
   Test:
     runs-on: ubuntu-latest
@@ -62,6 +59,9 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
+      - name: Set up version
+        run: echo "VERSION=$($VERSION_EXP)" >> $GITHUB_ENV
 
       - name: Test application
         env:

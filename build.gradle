@@ -7,10 +7,8 @@ plugins {
 }
 
 group = 'com.github.mwierzchowski.weather'
-version = System.getenv('VERSION') ?: 'SNAPSHOT-NOT'
+version = System.getenv('VERSION') ?: 'SNAPSHOT'
 sourceCompatibility = '14'
-
-println "Version in Gradle is: $version"
 
 configurations {
 	compileOnly {
