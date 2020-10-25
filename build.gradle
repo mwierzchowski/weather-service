@@ -20,23 +20,27 @@ repositories {
 	mavenCentral()
 }
 
+// todo replace with regular groovy
 ext {
 	set('springCloudVersion', "Hoxton.SR8")
 	set('testcontainersVersion', "1.14.3")
+	set('mapstructVersion', "1.3.1.Final") // todo maybe BOM?
 }
 
 dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -59,5 +63,13 @@ sonarqube {
 		property "sonar.projectKey", "mwierzchowski_weather-service"
 		property "sonar.organization", "mwierzchowski"
 		property "sonar.host.url", "https://sonarcloud.io"
+	}
+}
+
+// todo is it needed?
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled false
 	}
 }
