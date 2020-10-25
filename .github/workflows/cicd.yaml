@@ -27,7 +27,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Set up version
-        run: echo "::set-env name=VERSION::$($VERSION_EXP)"
+        run: echo "VERSION=$($VERSION_EXP)" >> $GITHUB_ENV
 
       - name: Show version
         run: ./gradlew properties -q | grep "version:" | awk '{print $2}'
