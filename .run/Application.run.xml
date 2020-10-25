@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="WeatherApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+  <configuration default="false" name="Weather Service" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.github.mwierzchowski.weather.WeatherApplication" />
     <module name="weather-service.main" />
     <option name="VM_PARAMETERS" value="-Dspring.profiles.active=debug" />

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 
-// todo package v1?
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/weather")
