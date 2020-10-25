@@ -36,8 +36,8 @@ dependencyManagement {
 dependencies {
 	// processors
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	annotationProcessor 'org.projectlombok:lombok'
 	// compile only
 	compileOnly 'org.projectlombok:lombok'
 	// implementation
