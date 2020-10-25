@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id "jacoco"
 	id "org.sonarqube" version "3.0"
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
@@ -8,7 +9,7 @@ plugins {
 
 group = 'com.github.mwierzchowski.weather'
 version = System.getenv('VERSION') ?: 'SNAPSHOT'
-sourceCompatibility = '15'
+sourceCompatibility = '14'
 
 configurations {
 	compileOnly {
@@ -21,26 +22,9 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "Hoxton.SR8")
-	set('testcontainersVersion', "1.14.3")
-}
-
-dependencies {
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
-
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	compileOnly 'org.projectlombok:lombok'
-
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	springCloudVersion = "Hoxton.SR8"
+	testcontainersVersion= "1.14.3"
+	mapstructVersion = "1.4.1.Final"
 }
 
 dependencyManagement {
@@ -50,8 +34,36 @@ dependencyManagement {
 	}
 }
 
+dependencies {
+	// processors
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	// compile only
+	compileOnly 'org.projectlombok:lombok'
+	// implementation
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	// test
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	// dev tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
 test {
 	useJUnitPlatform()
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
 }
 
 sonarqube {
