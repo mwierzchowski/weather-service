@@ -5,7 +5,7 @@
     <option name="VM_PARAMETERS" value="-Dspring.profiles.active=debug" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.github.mwierzchowski.weather.*" />
+        <option name="PATTERN" value="com.github.mwierzchowski.weather.core.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

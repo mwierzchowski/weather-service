@@ -1,6 +1,6 @@
 package com.github.mwierzchowski.weather;
 
-import com.github.mwierzchowski.weather.controller.WeatherController;
+import com.github.mwierzchowski.weather.web.WeatherController;
 import com.github.mwierzchowski.weather.core.SpeedUnit;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
